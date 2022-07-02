@@ -1,0 +1,446 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+@mixin respon_900{
+    @media (max-width: 900px) {
+        @content
+    };
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, .8);
+    z-index: 5000;
+    position: absolute;
+    width: 100%;
+    transition: .5s;
+    .bar{
+        display: none;
+        color: white;
+        font-size: 25px;
+        padding: 15px;
+        &:focus{
+            color: red;
+        }
+        @include respon_900(){
+            display: block;
+        }
+    }
+    .head_menu{
+        display: flex;
+        transition: .5s;
+        @include respon_900(){
+            display: block;
+            position: absolute;
+            width: 100%;
+            top: 100%;
+            left: -100%;
+            background-color: rgb(20, 20, 20);
+        }
+        li{
+            position: relative;
+            &:hover{
+                >{
+                    .submenu{
+                        visibility: visible;
+                        opacity: 1;
+                        transition: .5s;
+                        height: 300%;
+                    }
+                    a{
+                        background: white;
+                        color: black;   
+                    }
+                }
+            } 
+            a{
+                display: block;
+                font-size: 14px;
+                text-transform: uppercase;
+                font-weight: 600;
+                padding: 1.3em 20px;
+                transition: .2s;
+            }
+            .submenu{
+                visibility: hidden;
+                opacity: 0;
+                overflow: hidden;
+                height: 0;
+                transition: .5s;
+                background-color: rgb(235, 235, 235);
+                position: absolute;
+                li{
+                    a{
+                        color: black;
+                        &:hover{
+                            color: white;
+                            background-color: rgb(5, 5, 5);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .head_search{
+        display: flex;
+        align-items: center;
+        input{
+            width: 0;
+            outline: none;
+            border: none;
+            transition: .5s;
+            margin-right: 1em;
+            border-radius: 10px;
+            &:hover{
+                width: 300px;
+                padding: 10px;
+            }
+        }
+        label{
+            font-size: 1.6em;
+            color: yellow;
+            cursor: pointer;
+            &:hover{
+                margin-top: 2px;
+                color: rgb(255, 107, 22);
+            }
+            &:active{
+                color: rgb(255, 76, 22);
+            }
+        }
+        padding: 0 1.2em;
+    }
+    &.sticky{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: black;
+        .head_menu{
+            li{
+                a{
+                    padding: 1.5em 20px;
+                }
+            }
+        }
+        label{
+            padding: 15px;
+        }
+    }
+}
+.introduce{
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    img{
+        position: absolute;
+        object-fit: cover;
+        z-index: -1;
+    }
+    .introduce_words{
+        color: white;
+        margin-top: 10em;
+        @include respon_900(){
+            margin-top: 1em;
+        }
+        text-shadow: 2px -1px 8px rgba(0, 0, 0, .7);
+        h1{
+            font-size: 3.4em;
+            @include respon_900(){
+                font-size: 2.4em;
+            }
+        }
+        h3{
+            font-size: 2em;
+            @include respon_900(){
+                font-size: 1.5em;
+            }
+            color: rgb(240, 240, 240);
+        }
+    }
+}
+.main{
+    .title_part{
+        text-align: center;
+        padding: 2em 0;
+        &.tour{
+            h1{
+                letter-spacing: 5px;
+            }
+        }
+        h1{
+            text-transform: uppercase;
+        }
+        p{
+            font-style: italic;
+            margin-top: 1.4em;
+        }
+    }
+    .main_aboutus, .main_showus{
+        width: 95%;
+        margin: 0 auto;
+        @include respon_900(){
+            width: 85%;
+            text-align: center;
+        }
+    }
+    .main_aboutus{
+        margin-bottom: 3em;
+    }
+    .main_showus{
+        @include respon_900(){
+            display: block;
+        }
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+        height: auto;
+        .main_showus__box{
+            @include respon_900(){
+                width: 100%;
+                margin-bottom: 1em;
+            }
+            width: 20%;
+            height: auto;
+            display: block;
+            position: relative;
+            cursor: pointer;
+            &:hover{
+                .main_shows__box__title{
+                    width: 100%;
+                }
+            }
+            .main_shows__box__title{
+                font-size: 21px;
+                position: absolute;
+                z-index: 22222;
+                width: 0;
+                height: 100%;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 500;
+                text-shadow: 0 4px 7px rgb(39, 3, 3);
+                color: white;
+                background-color: rgba(0, 0, 0, .7);
+                transition: .2s;
+            }
+            .main_shows__box__image{
+                height: 350px;
+                width: 100%;
+                @include respon_900(){
+                    height: 400px;
+                }
+                box-shadow: -2px -1px 8px 2px rgba(0, 0, 0, .4),
+                0 0 6px rgba(255, 255, 255, 0.8),
+                ;
+                img{
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+    .main_tour{
+        padding: 5em 0;
+        .container{
+            width: 80%;
+            margin: 0 auto;
+        }
+        margin-top: 5em;
+        background-color: black;
+        color: white;
+        padding-top: 2em;
+        .main_tour__tickets{
+            .main_tour__tickets__calendar{
+                width: 100%;
+                padding: 1em;
+                border-radius: 20px;
+                background-color: white;
+                color: black;
+                li{
+                    display: flex;
+                    font-size: 18px;
+                    justify-content: space-between;
+                    margin-bottom: 1em;
+                    &:last-of-type{
+                        margin-bottom: 0;
+                    }
+                    .month{
+                        color: gray;
+                    }
+                    .status{
+                        color: red;
+                        font-weight: 700;
+                        &.active{
+                            color: white;
+                            background: rgb(41, 41, 41);
+                            border-radius: 50%;
+                            width: 25px;
+                            height: 25px;
+                            text-align: center;
+                            line-height: 25px;
+                        }
+                    }
+                }
+            }
+            .main_tour__tickets__cards{
+                margin-top: 3em;
+                display: flex;
+                justify-content: space-between;
+                @include respon_900(){
+                    display: block;
+                }
+                .main_tour_tickets__cards__card{
+                    width: 25%;
+                    height: 400px;
+                    background-color: white;
+                    @include respon_900(){
+                        width: 100%;
+                        height: 450px;
+                        margin-bottom: 1em;
+                    }
+                    .main_tour_tickets__cards__card__img{
+                        height: 40%;
+                    }
+                    .main_tour_tickets__cards__card__about{
+                        color: black;
+                        padding-top: 10px;
+                        height: 45%;
+                        text-align: center;
+                        #title{
+                            padding: 10px;
+                        }
+                        #content{
+                            width: 85%;
+                            margin: 0 auto;
+                            margin-top: 10px;
+                            padding: 1em 0;
+                            height: 60%;
+                            text-align: justify;
+                            overflow-y: auto;
+                        }
+                    }
+                    .main_tour_tickets__cards__card__buy{
+                        height: 15%;
+                        text-align: center;
+                        padding: 0 1em;
+                        a{
+                            display: block;
+                            background-color: black;
+                            padding: 13px 25px;
+                            border-radius: 5px;
+                            border: 2px solid black;
+                            &:hover{ 
+                                color: black;
+                                background-color: white;
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .main_contact{
+        width: 95%;
+        margin: 0 auto;
+        padding-bottom: 2em;
+        .main_contact__content{
+            display: flex;
+            justify-content: space-between;
+            @include respon_900(){
+                display: block;
+            }
+            .main_contact__content__info{
+                font-size: 22px;
+                @include respon_900(){
+                   text-align: center;
+                }
+                p{
+                    margin-bottom: 1em;
+                    color: rgb(34, 34, 34);
+                }
+            }
+            .main_contact__content__mess{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                width: 40%;
+                gap: 10px;
+                @include respon_900(){
+                    width: 100%;
+                    
+                }
+                .main_contact__content__mess__widget{
+                    width: calc(50% - 10px);
+                    input[type="text"], input[type="email"],textarea{
+                        padding: 8px;
+                        width: 100%;
+                        border: none;
+                        box-shadow: 0 0 5px rgba(41, 41, 41, .8);
+                    }
+                    &.submit{
+                        width: 100%;
+                        input{
+                            width: 150px;
+                            height: 50px;
+                            font-size: 17px;
+                            @include respon_900(){
+                                width: 100%;
+                            }
+                            float: right;
+                            border: none;
+                            cursor: pointer;
+                            background-color: black;
+                            color: white;
+                            border-radius: 5px;
+                            &:hover{
+                                background-color: gray;
+                            }
+                        }
+                    }
+                    &.textare{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+.footer{
+    .footer_map{
+        width: 100%;
+        display: block;
+    }
+    .footer_belong{
+        text-align: center;
+        padding: 1em 0;
+        p{
+            color: gray;
+            .author{
+                color: black;
+                font-weight: 600;
+                letter-spacing: 2px;
+                margin-left: 2px;
+            }
+        }
+    }
+}
